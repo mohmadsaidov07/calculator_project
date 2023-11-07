@@ -50,3 +50,11 @@ header,footer{
 .footer{
     background-color: lightcoral;
 }
+
+.main-text{
+    color: red;
+}
+
+.bigger_text{
+    font-size: 30px;
+}
