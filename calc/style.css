@@ -30,37 +30,29 @@ body,html{
     background-color: lightblue;
 }
 
-.counter{
-    font-size: 20px;
-    padding: 20px 40px;
-    border: 2px solid #000;
-    margin: 0px calc(50% - 80px);
-    background-color: orange;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    /* no copy */
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;}
-
-.bigger_counter{
-    transform: scale(1.1,1.1);
-    color: red;
-    border: 3px solid #000;
-}
-
-.eliminator{
-    display: none;
-}
-
 .calc_block{
     display: block;
-    margin: 0 calc(50% - 200px);
+    margin: 0 calc(50% - 350px);
     height: 500px;
-    width: 400px;
+    width: 700px;
     background-color: grey;
     border: 1px solid #000;
 }
+
+.calc_display{
+    display: block;
+    margin: 3% 5%;
+    height: 15%;
+    width: 90%;
+    background-color: rgb(224, 154, 104);
+    border: 1px solid #000;
+    font-size: 70px;
+    text-align: right;
+}
+
+/* -webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none; */
