@@ -7,7 +7,7 @@ main.append(calc_block)
 
 let calc_display = document.createElement('div');
 calc_display.classList.add('calc_display')
-calc_display.textContent = ''; //число не больше 1999999999999999
+calc_display.textContent = ''; //
 calc_block.append(calc_display)
 
 let buttons_block = document.createElement('div');
@@ -15,7 +15,7 @@ buttons_block.classList.add('buttons_block')
 calc_block.append(buttons_block)
 
 const button_amout = 19
-const button_signs = "0 1 2 3 4 5 6 7 8 9 + - clear * / round ++ -- =".split(" ")
+const button_signs = "0 1 2 3 4 5 6 7 8 9 + - clear * / . ++ -- =".split(" ")
 
 for(let i=0;i < button_amout; i++){
     let button = document.createElement('div');
@@ -39,36 +39,85 @@ const button_minus = document.querySelector('.main .calc_block .buttons_block .b
 const button_clear = document.querySelector('.main .calc_block .buttons_block .button:nth-child(13)')
 const button_multiply = document.querySelector('.main .calc_block .buttons_block .button:nth-child(14)')
 const button_divide = document.querySelector('.main .calc_block .buttons_block .button:nth-child(15)')
-const button_round = document.querySelector('.main .calc_block .buttons_block .button:nth-child(16)')
+const button_dot = document.querySelector('.main .calc_block .buttons_block .button:nth-child(16)')
 const button_plusx2 = document.querySelector('.main .calc_block .buttons_block .button:nth-child(17)')
 const button_minusx2 = document.querySelector('.main .calc_block .buttons_block .button:nth-child(18)')
 const button_equal = document.querySelector('.main .calc_block .buttons_block .button:nth-child(19)')
 
+const functions = {
+    '+': (a, b) => a + b,
+    '-': (a, b) => a - b,
+    '*': (a, b) => a * b,
+    '/': (a, b) => a / b
+}
+
+button_print(button0),button_print(button1),button_print(button2),button_print(button3)
+button_print(button4),button_print(button5),button_print(button6),button_print(button7),button_print(button_dot)
+button_print(button8),button_print(button9),button_print2(button_plus),button_print2(button_minus)
+button_print2(button_multiply),button_print2(button_divide),button_result(button_equal)
+
+button_clear.addEventListener('click', () =>{
+    setTimeout(() => {
+        location.reload()
+    }, 50);
+})
+
 
 function button_print(btn){
     btn.addEventListener('click', () => {
-        calc_display.textContent += btn.textContent;
+        if ((calc_display.textContent).length < 16){
+            if (calc_display.textContent.length == 0){
+                calc_display.textContent = btn.textContent;
+            } else {
+                calc_display.textContent = calc_display.textContent + '' + btn.textContent;
+            }
+        }else{
+            calc_display.textContent = "see you chump"
+            setTimeout(() => {
+                location.reload()
+            }, 2000);
+        }
+
     })
 }
-
+let operation_counter = 0
 function button_print2(btn){
     btn.addEventListener('click', () => {
-        calc_display.textContent += btn.textContent;
+        if(operation_counter < 1 && calc_display.textContent.length != 0){
+            calc_display.textContent = calc_display.textContent + ' ' + btn.textContent + ' ';
+            operation_counter+=1
+        }
     })
 }
 
+function button_result(btn){
+    btn.addEventListener('click', () => {
+        if((calc_display.textContent).length > 0){
+            const number1 = Number(calc_display.textContent.split(' ')[0])
+            const sign = calc_display.textContent.split(' ')[1]
+            const number2 = Number(calc_display.textContent.split(' ')[2])
+            if (functions[sign](number1,number2).length < 14) {
+                calc_display.textContent = functions[sign](number1,number2)
+            }else if(functions[sign](number1,number2) % 1 == 0){
+                calc_display.textContent = functions[sign](number1,number2)}
+            else{
+                calc_display.textContent = functions[sign](number1,number2).toFixed(14)
+            }
+            setTimeout(() => {
+                location.reload()
+            }, 2000);
+    }   
+    })
+}
 
-
-button_print(button0),button_print(button1),button_print(button2),button_print(button3)
-button_print(button4),button_print(button5),button_print(button6),button_print(button7)
-button_print(button8),button_print(button9),button_print2(button_plus),button_print2(button_minus)
-button_print2(button_multiply),button_print2(button_divide),button_print2(button_plusx2),button_print2(button_minusx2)
-button_print2(button_equal)
-
-button_clear.addEventListener('click', () =>{
-    calc_display.textContent = ''
+button_plusx2.addEventListener('click' , () => {
+    if (calc_display.textContent.split(" ").length == 1) {
+        calc_display.textContent = Number(calc_display.textContent) + 1
+    }
 })
 
-// сделать buttonprint2 который будет изспользоваться только на знаках и иметь ограничения такие как, нельзя несколько знаков в одной строке
-// писать, если изспользовать равно до появление знака или второго числа он просто выведет первое выведенное число
-// проверить количество знаков можно будет найдя способ как textcontetn превратить в массив и чекнуть массивы
+button_minusx2.addEventListener('click' , () => {
+    if (calc_display.textContent.split(" ").length == 1) {
+        calc_display.textContent = Number(calc_display.textContent) - 1
+    }
+})

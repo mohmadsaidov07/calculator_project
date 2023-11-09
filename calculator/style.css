@@ -29,7 +29,9 @@ body,html{
     text-align: center;
     background-color: lightblue;
 }
-
+.title{
+    font-size: 30px;
+}
 .calc_block{
     display: block;
     margin: 0 calc(50% - 350px);
@@ -37,6 +39,8 @@ body,html{
     width: 700px;
     background-color: grey;
     border: 1px solid #000;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
 }
 
 .calc_display{
