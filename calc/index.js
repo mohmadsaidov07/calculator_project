@@ -7,5 +7,5 @@ main.append(calc_block)
 
 let calc_display = document.createElement('div');
 calc_display.classList.add('calc_display')
-calc_display.textContent = 0;
+calc_display.textContent = 1;
 calc_block.append(calc_display)
